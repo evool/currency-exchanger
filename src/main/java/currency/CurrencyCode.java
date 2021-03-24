@@ -1,4 +1,4 @@
-package entities;
+package currency;
 
 
 public enum CurrencyCode {

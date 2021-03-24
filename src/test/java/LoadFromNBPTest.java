@@ -1,21 +1,25 @@
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.testng.annotations.Test;
 
-import entities.Currency;
-import entities.CurrencyCode;
+import currency.Currency;
+import currency.CurrencyCode;
 import exceptions.FutureDateException;
-import strategies.LoadFromNBP;
-import strategies.LoadStrategy;
+import strategies.load.LoadFromNbp;
+import strategies.load.Loading;
+import strategies.parse.NbpJsonParser;
+import strategies.parse.Parsing;
 
 public class LoadFromNBPTest {
 
 	final BigDecimal MONEY = new BigDecimal(20);
-	final LoadStrategy strategy = new LoadFromNBP();
-	Currency currency;
+	Loading loadStrategy = new LoadFromNbp();
+	Parsing parseStrategy = new NbpJsonParser();
+
 
 	@Test
 	public void should_exchangeToPLN() {
@@ -23,7 +27,8 @@ public class LoadFromNBPTest {
 		CurrencyCode code = CurrencyCode.ISK;
 		
 		// when
-		currency = strategy.load(code);
+		String jsonAsString = loadStrategy.load(code);
+		Currency currency = parseStrategy.parse(jsonAsString);
 		currency.exchangeToPLN(MONEY);
 		
 		// then
@@ -37,7 +42,8 @@ public class LoadFromNBPTest {
 		BigDecimal currencyValueFromNBP = new BigDecimal("77.6960");
 		
 		// when
-		currency = strategy.load(code, date);
+		String jsonAsString = loadStrategy.load(code, date);
+		Currency currency = parseStrategy.parse(jsonAsString);
 		BigDecimal val2 = currency.exchangeToPLN(MONEY);
 		
 		// then
@@ -47,12 +53,13 @@ public class LoadFromNBPTest {
 	@Test
 	public void should_exchangeToPLN_when_thereWasNoRateThatDate() {
 		// given
-		LocalDate weekend = LocalDate.of(2021, 3, 7);
+		LocalDate sunday = LocalDate.of(2021, 3, 7);
 		CurrencyCode code = CurrencyCode.EUR;
 		BigDecimal currencyValueFromSunday = new BigDecimal("91.5860");
 		
 		// when
-		currency = strategy.load(code, weekend);
+		String jsonAsString = loadStrategy.load(code, sunday);
+		Currency currency = parseStrategy.parse(jsonAsString);
 		BigDecimal val2 = currency.exchangeToPLN(MONEY);
 		
 		// then
@@ -66,7 +73,7 @@ public class LoadFromNBPTest {
 		CurrencyCode code = CurrencyCode.EUR;
 		
 		// when
-		Throwable thrown = catchThrowable(() -> { currency = strategy.load(code, date); });
+		Throwable thrown = catchThrowable(() -> {loadStrategy.load(code, date);});
 		
 		// then
 		assertThat(thrown).isInstanceOf(FutureDateException.class);
@@ -78,7 +85,8 @@ public class LoadFromNBPTest {
 		CurrencyCode code = CurrencyCode.CHF;
 		
 		// when
-		currency = strategy.load(code);
+		String jsonAsString = loadStrategy.load(code);
+		Currency currency = parseStrategy.parse(jsonAsString);
 		currency.exchangeFromPLN(MONEY);
 		
 		// then
