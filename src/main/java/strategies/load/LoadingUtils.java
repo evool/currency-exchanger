@@ -1,22 +1,27 @@
 package strategies.load;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
-import currency.CurrencyCode;
 import exceptions.FutureDateException;
-import exceptions.InvalidDateException;
 
-public class LoadingUtils {
-	public static String tryToLoadData(Loading dataProvider, CurrencyCode code, LocalDate date, int attempts) {
-		for(int i = attempts; i > 0; i--) {
-			String result = dataProvider.load(code, date);
-			if(result != null) {
-				return result;
-			}
+public class LoadingUtils {	
+	public static LocalDate verifyItIsNotWeekend(LocalDate date) {
+		if(LocalTime.now().isBefore(LocalTime.NOON)) {
 			date = date.minusDays(1);
 		}
-		throw new InvalidDateException(String.format("Cannot find valid rate %s for %s.", code, date.toString()));
+		if(date.getDayOfWeek() == DayOfWeek.SATURDAY) {
+			date = date.minusDays(1);
+			return date;
+		}
+		if(date.getDayOfWeek() == DayOfWeek.SUNDAY) {
+			date = date.minusDays(2);
+			return date;
+		}
+		return date;
 	}
+	
 	public static void checkIsDateAfterToday(LocalDate date) {
 		if (date.isAfter(LocalDate.now())) {
 			throw new FutureDateException(
