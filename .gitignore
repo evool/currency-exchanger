@@ -111,3 +111,8 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,eclipse
+
+test-output/
+.classpath
+.project
+pom.xml
