@@ -6,30 +6,21 @@ import java.time.LocalDate;
 
 import org.testng.annotations.Test;
 
-import currency.Currency;
 import currency.CurrencyCode;
 import exceptions.FutureDateException;
-import strategies.load.LoadFromNbp;
-import strategies.load.Loading;
-import strategies.parse.NbpJsonParser;
-import strategies.parse.Parsing;
 
 public class LoadFromNBPTest {
 
 	final BigDecimal MONEY = new BigDecimal(20);
-	Loading loadStrategy = new LoadFromNbp();
-	Parsing parseStrategy = new NbpJsonParser();
-
 
 	@Test
 	public void should_exchangeToPLN() {
 		// given
 		CurrencyCode code = CurrencyCode.ISK;
+		Exchange exchange = new Exchange();
 		
 		// when
-		String jsonAsString = loadStrategy.load(code);
-		Currency currency = parseStrategy.parse(jsonAsString);
-		currency.exchangeToPLN(MONEY);
+		exchange.toPLN(MONEY, code);
 		
 		// then
 	}
@@ -37,17 +28,16 @@ public class LoadFromNBPTest {
 	@Test
 	public void should_exchangeToPLN_when_specificDateWasGiven() {
 		// given
-		LocalDate date = LocalDate.of(2006, 4, 26);
 		CurrencyCode code = CurrencyCode.EUR;
-		BigDecimal currencyValueFromNBP = new BigDecimal("77.6960");
+		LocalDate date = LocalDate.of(2006, 4, 26);
+		BigDecimal currencyValueFromPast = new BigDecimal("77.6960");
+		Exchange exchange = new Exchange();
 		
 		// when
-		String jsonAsString = loadStrategy.load(code, date);
-		Currency currency = parseStrategy.parse(jsonAsString);
-		BigDecimal val2 = currency.exchangeToPLN(MONEY);
+		BigDecimal currencyValueFromNBP = exchange.toPLN(MONEY, code, date);
 		
 		// then
-		assertThat(currencyValueFromNBP).isEqualTo(val2);
+		assertThat(currencyValueFromPast).isEqualTo(currencyValueFromNBP);
 	}
 
 	@Test
@@ -56,14 +46,13 @@ public class LoadFromNBPTest {
 		LocalDate sunday = LocalDate.of(2021, 3, 7);
 		CurrencyCode code = CurrencyCode.EUR;
 		BigDecimal currencyValueFromSunday = new BigDecimal("91.5860");
+		Exchange exchange = new Exchange();
 		
 		// when
-		String jsonAsString = loadStrategy.load(code, sunday);
-		Currency currency = parseStrategy.parse(jsonAsString);
-		BigDecimal val2 = currency.exchangeToPLN(MONEY);
+		BigDecimal currencyValueFromNBP = exchange.toPLN(MONEY, code, sunday);
 		
 		// then
-		assertThat(currencyValueFromSunday).isEqualTo(val2);
+		assertThat(currencyValueFromSunday).isEqualTo(currencyValueFromNBP);
 	}
 
 	@Test
@@ -71,9 +60,10 @@ public class LoadFromNBPTest {
 		// given
 		LocalDate date = LocalDate.now().plusDays(1);
 		CurrencyCode code = CurrencyCode.EUR;
+		Exchange exchange = new Exchange();
 		
 		// when
-		Throwable thrown = catchThrowable(() -> {loadStrategy.load(code, date);});
+		Throwable thrown = catchThrowable(() -> {exchange.toPLN(MONEY, code, date);});
 		
 		// then
 		assertThat(thrown).isInstanceOf(FutureDateException.class);
@@ -83,11 +73,10 @@ public class LoadFromNBPTest {
 	public void should_exchangeFromPLN() {
 		// given
 		CurrencyCode code = CurrencyCode.CHF;
+		Exchange exchange = new Exchange();
 		
 		// when
-		String jsonAsString = loadStrategy.load(code);
-		Currency currency = parseStrategy.parse(jsonAsString);
-		currency.exchangeFromPLN(MONEY);
+		exchange.fromPLN(MONEY, code);
 		
 		// then
 	}
