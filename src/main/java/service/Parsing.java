@@ -1,4 +1,4 @@
-package strategies.parse;
+package service;
 
 import currency.Currency;
 

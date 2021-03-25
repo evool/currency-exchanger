@@ -1,4 +1,4 @@
-package strategies.parse;
+package service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

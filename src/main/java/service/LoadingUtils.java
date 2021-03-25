@@ -1,4 +1,4 @@
-package strategies.load;
+package service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

@@ -5,11 +5,11 @@ import java.util.Iterator;
 
 import currency.Currency;
 import currency.CurrencyCode;
-import strategies.load.Loading;
-import strategies.load.LoadingUtils;
-import strategies.load.NbpLoader;
-import strategies.parse.NbpJsonParser;
-import strategies.parse.Parsing;
+import service.Loading;
+import service.LoadingUtils;
+import service.NbpJsonParser;
+import service.NbpLoader;
+import service.Parsing;
 
 public class Exchange {
 	private Loading provider;

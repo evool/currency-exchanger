@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import currency.CurrencyCode;
 import exceptions.FutureDateException;
 
-public class LoadFromNBPTest {
+public class ExchangeByNbpTest {
 
 	final BigDecimal MONEY = new BigDecimal(20);
 

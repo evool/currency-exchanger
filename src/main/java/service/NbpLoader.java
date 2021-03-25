@@ -1,4 +1,4 @@
-package strategies.load;
+package service;
 
 import java.io.IOException;
 import java.net.URI;
