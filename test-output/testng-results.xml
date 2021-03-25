@@ -2,28 +2,28 @@
 <testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-03-24T11:23:00Z" name="Default suite" finished-at="2021-03-24T11:23:01Z" duration-ms="626">
+  <suite started-at="2021-03-25T09:40:45Z" name="Default suite" finished-at="2021-03-25T09:40:46Z" duration-ms="843">
     <groups>
     </groups>
-    <test started-at="2021-03-24T11:23:00Z" name="Default test" finished-at="2021-03-24T11:23:01Z" duration-ms="626">
+    <test started-at="2021-03-25T09:40:45Z" name="Default test" finished-at="2021-03-25T09:40:46Z" duration-ms="843">
       <class name="LoadFromNBPTest">
-        <test-method signature="should_exchangeFromPLN()[pri:0, instance:LoadFromNBPTest@609db546]" started-at="2021-03-24T12:23:00Z" name="should_exchangeFromPLN" finished-at="2021-03-24T12:23:00Z" duration-ms="334" status="PASS">
+        <test-method signature="should_exchangeFromPLN()[pri:0, instance:LoadFromNBPTest@6c61a903]" started-at="2021-03-25T10:40:45Z" name="should_exchangeFromPLN" finished-at="2021-03-25T10:40:46Z" duration-ms="475" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- should_exchangeFromPLN -->
-        <test-method signature="should_exchangeToPLN()[pri:0, instance:LoadFromNBPTest@609db546]" started-at="2021-03-24T12:23:00Z" name="should_exchangeToPLN" finished-at="2021-03-24T12:23:01Z" duration-ms="50" status="PASS">
+        <test-method signature="should_exchangeToPLN()[pri:0, instance:LoadFromNBPTest@6c61a903]" started-at="2021-03-25T10:40:46Z" name="should_exchangeToPLN" finished-at="2021-03-25T10:40:46Z" duration-ms="106" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- should_exchangeToPLN -->
-        <test-method signature="should_exchangeToPLN_when_specificDateWasGiven()[pri:0, instance:LoadFromNBPTest@609db546]" started-at="2021-03-24T12:23:01Z" name="should_exchangeToPLN_when_specificDateWasGiven" finished-at="2021-03-24T12:23:01Z" duration-ms="91" status="PASS">
+        <test-method signature="should_exchangeToPLN_when_specificDateWasGiven()[pri:0, instance:LoadFromNBPTest@6c61a903]" started-at="2021-03-25T10:40:46Z" name="should_exchangeToPLN_when_specificDateWasGiven" finished-at="2021-03-25T10:40:46Z" duration-ms="100" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- should_exchangeToPLN_when_specificDateWasGiven -->
-        <test-method signature="should_exchangeToPLN_when_thereWasNoRateThatDate()[pri:0, instance:LoadFromNBPTest@609db546]" started-at="2021-03-24T12:23:01Z" name="should_exchangeToPLN_when_thereWasNoRateThatDate" finished-at="2021-03-24T12:23:01Z" duration-ms="122" status="PASS">
+        <test-method signature="should_exchangeToPLN_when_thereWasNoRateThatDate()[pri:0, instance:LoadFromNBPTest@6c61a903]" started-at="2021-03-25T10:40:46Z" name="should_exchangeToPLN_when_thereWasNoRateThatDate" finished-at="2021-03-25T10:40:46Z" duration-ms="130" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- should_exchangeToPLN_when_thereWasNoRateThatDate -->
-        <test-method signature="should_throwCurrencyException_when_dateIsAfterToday()[pri:0, instance:LoadFromNBPTest@609db546]" started-at="2021-03-24T12:23:01Z" name="should_throwCurrencyException_when_dateIsAfterToday" finished-at="2021-03-24T12:23:01Z" duration-ms="8" status="PASS">
+        <test-method signature="should_throwCurrencyException_when_dateIsAfterToday()[pri:0, instance:LoadFromNBPTest@6c61a903]" started-at="2021-03-25T10:40:46Z" name="should_throwCurrencyException_when_dateIsAfterToday" finished-at="2021-03-25T10:40:46Z" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- should_throwCurrencyException_when_dateIsAfterToday -->
