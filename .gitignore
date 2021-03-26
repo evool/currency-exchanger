@@ -115,4 +115,3 @@ buildNumber.properties
 test-output/
 .classpath
 .project
-pom.xml

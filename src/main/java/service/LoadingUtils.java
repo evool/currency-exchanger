@@ -7,8 +7,8 @@ import java.time.LocalTime;
 import exceptions.FutureDateException;
 
 public class LoadingUtils {	
-	public static LocalDate verifyItIsNotWeekend(LocalDate date) {
-		if(LocalTime.now().isBefore(LocalTime.NOON)) {
+	public static LocalDate verifyAndSkipIfItIsWeekend(LocalDate date) {
+		if(LocalDate.now().isEqual(date) && LocalTime.now().isBefore(LocalTime.NOON)) {
 			date = date.minusDays(1);
 		}
 		if(date.getDayOfWeek() == DayOfWeek.SATURDAY) {
@@ -23,6 +23,7 @@ public class LoadingUtils {
 	}
 	
 	public static void checkIsDateAfterToday(LocalDate date) {
+		
 		if (date.isAfter(LocalDate.now())) {
 			throw new FutureDateException(
 					String.format("The requested rate is from %s, today is %s.", date.toString(), LocalDate.now()));

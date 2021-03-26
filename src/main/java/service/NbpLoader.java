@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import currency.CurrencyCode;
 import exceptions.ConnectionException;
 import exceptions.CurrencyException;
+import exceptions.InvalidDateException;
 
 public class NbpLoader implements Loading {
 
@@ -29,10 +30,11 @@ public class NbpLoader implements Loading {
 			.build();
 
 	@Override
-	public String load(CurrencyCode code, LocalDate date) {
-		LoadingUtils.checkIsDateAfterToday(date);
+	public String load(CurrencyCode code, LocalDate sourceDate) {
+		LoadingUtils.checkIsDateAfterToday(sourceDate);
+		LocalDate date = sourceDate;
 		for(int attempts = 10; attempts > 0; --attempts) {
-			LoadingUtils.verifyItIsNotWeekend(date);
+			date = LoadingUtils.verifyAndSkipIfItIsWeekend(date);
 			HttpRequest request = HttpRequest.newBuilder()
 					.GET()
 					.uri(URI.create(String.format(url, code, date)))
@@ -50,6 +52,6 @@ public class NbpLoader implements Loading {
 			}	
 			date = date.minusDays(1);
 		}
-		return null;
+		throw new InvalidDateException(String.format("There is no data for currency %s from %s.", code, sourceDate.toString()));
 	}
 }

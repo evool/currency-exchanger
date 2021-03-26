@@ -1,7 +1,6 @@
 package currency;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public final class Currency {
@@ -11,7 +10,6 @@ public final class Currency {
 	private final LocalDate effectiveDate;
 	
 	public Currency(String name, CurrencyCode code, BigDecimal rate, LocalDate effectiveDate) {
-		super();
 		this.name = name;
 		this.code = code;
 		this.rate = rate;
@@ -38,14 +36,6 @@ public final class Currency {
 	public String toString() {
 		return "Currency [name=" + name + ", code=" + code + ", rate=" + rate + ", effectiveDate=" + effectiveDate
 				+ "]";
-	}
-	
-	public BigDecimal exchangeToPLN(BigDecimal value) {
-		return value.multiply(getRate());
-	}
-	
-	public BigDecimal exchangeFromPLN(BigDecimal value) {
-		return value.divide(getRate(), 4, RoundingMode.HALF_UP);
 	}
 
 	@Override
@@ -87,5 +77,4 @@ public final class Currency {
 			return false;
 		return true;
 	}
-	
 }
