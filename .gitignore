@@ -116,3 +116,4 @@ test-output/
 .classpath
 .project
 src/main/resources/hibernate.cfg.xml
+src/main/resources/hibernate.cfg.xml
