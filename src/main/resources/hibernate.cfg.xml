@@ -3,9 +3,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">Org.Postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_name</property>
-        <property name="hibernate.connection.username">user</property>
-        <property name="hibernate.connection.password">pass</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:59437/currencydb</property>
+        <property name="hibernate.connection.username">hibernate_user</property>
+        <property name="hibernate.connection.password">1qaz@WSX</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <mapping class="entity.Dog" />
