@@ -3,11 +3,20 @@ package currency;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "currencies")
 public final class Currency {
-	private final String name;
-	private final CurrencyCode code;
-	private final BigDecimal rate;
-	private final LocalDate effectiveDate;
+	
+	@Id
+	private Long Id;
+	private String name;
+	private CurrencyCode code;
+	private BigDecimal rate;
+	private LocalDate effectiveDate;
 	
 	public Currency(String name, CurrencyCode code, BigDecimal rate, LocalDate effectiveDate) {
 		this.name = name;
@@ -30,6 +39,22 @@ public final class Currency {
 
 	public LocalDate getEffectiveDate() {
 		return effectiveDate;
+	}	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCode(CurrencyCode code) {
+		this.code = code;
+	}
+
+	public void setRate(BigDecimal rate) {
+		this.rate = rate;
+	}
+
+	public void setEffectiveDate(LocalDate effectiveDate) {
+		this.effectiveDate = effectiveDate;
 	}
 
 	@Override
