@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "currencies")
-public final class Currency {
-	
+@Table
+public class Currency {
+
 	@Id
 	private Long Id;
 	private String name;
 	private CurrencyCode code;
 	private BigDecimal rate;
 	private LocalDate effectiveDate;
+
+	public Currency() {}
 	
 	public Currency(String name, CurrencyCode code, BigDecimal rate, LocalDate effectiveDate) {
 		this.name = name;
@@ -25,32 +27,40 @@ public final class Currency {
 		this.effectiveDate = effectiveDate;
 	}
 
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public CurrencyCode getCode() {
 		return code;
 	}
 
-	public BigDecimal getRate() {
-		return rate;
-	}
-
-	public LocalDate getEffectiveDate() {
-		return effectiveDate;
-	}	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public void setCode(CurrencyCode code) {
 		this.code = code;
 	}
 
+	public BigDecimal getRate() {
+		return rate;
+	}
+
 	public void setRate(BigDecimal rate) {
 		this.rate = rate;
+	}
+
+	public LocalDate getEffectiveDate() {
+		return effectiveDate;
 	}
 
 	public void setEffectiveDate(LocalDate effectiveDate) {
@@ -59,8 +69,8 @@ public final class Currency {
 
 	@Override
 	public String toString() {
-		return "Currency [name=" + name + ", code=" + code + ", rate=" + rate + ", effectiveDate=" + effectiveDate
-				+ "]";
+		return "Currency [Id=" + Id + ", name=" + name + ", code=" + code + ", rate=" + rate + ", effectiveDate="
+				+ effectiveDate + "]";
 	}
 
 	@Override
@@ -69,8 +79,6 @@ public final class Currency {
 		int result = 1;
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((effectiveDate == null) ? 0 : effectiveDate.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((rate == null) ? 0 : rate.hashCode());
 		return result;
 	}
 
@@ -89,16 +97,6 @@ public final class Currency {
 			if (other.effectiveDate != null)
 				return false;
 		} else if (!effectiveDate.equals(other.effectiveDate))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (rate == null) {
-			if (other.rate != null)
-				return false;
-		} else if (!rate.equals(other.rate))
 			return false;
 		return true;
 	}

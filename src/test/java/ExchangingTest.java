@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import org.testng.annotations.Test;
 
 import currency.CurrencyCode;
+import currency.Exchange;
 import exceptions.FutureDateException;
 import exceptions.InvalidDateException;
 import service.NbpJsonParser;

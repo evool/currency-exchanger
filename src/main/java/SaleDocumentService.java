@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import currency.CurrencyCode;
+import currency.Exchange;
 
 public class SaleDocumentService {
 	public static void insert() {
