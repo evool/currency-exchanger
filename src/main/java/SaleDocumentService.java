@@ -1,8 +1,8 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import currency.CurrencyCode;
-import currency.Exchange;
+import model.CurrencyCode;
+import model.Exchange;
 
 public class SaleDocumentService {
 	public static void insert() {

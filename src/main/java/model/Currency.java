@@ -1,75 +1,54 @@
-package currency;
+package model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table
 public class Currency {
 
 	@Id
-	private Long Id;
-	private String name;
-	private CurrencyCode code;
-	private BigDecimal rate;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String currencyName;
+	private CurrencyCode currencyCode;
+	private BigDecimal currencyRate;
 	private LocalDate effectiveDate;
-
-	public Currency() {}
 	
 	public Currency(String name, CurrencyCode code, BigDecimal rate, LocalDate effectiveDate) {
-		this.name = name;
-		this.code = code;
-		this.rate = rate;
+		this.currencyName = name;
+		this.currencyCode = code;
+		this.currencyRate = rate;
 		this.effectiveDate = effectiveDate;
 	}
 
 	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
+		return id;
 	}
 
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return currencyName;
 	}
 
 	public CurrencyCode getCode() {
-		return code;
-	}
-
-	public void setCode(CurrencyCode code) {
-		this.code = code;
+		return currencyCode;
 	}
 
 	public BigDecimal getRate() {
-		return rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
+		return currencyRate;
 	}
 
 	public LocalDate getEffectiveDate() {
 		return effectiveDate;
 	}
 
-	public void setEffectiveDate(LocalDate effectiveDate) {
-		this.effectiveDate = effectiveDate;
-	}
-
 	@Override
 	public String toString() {
-		return "Currency [Id=" + Id + ", name=" + name + ", code=" + code + ", rate=" + rate + ", effectiveDate="
+		return "Currency [Id=" + id + ", name=" + currencyName + ", code=" + currencyCode + ", rate=" + currencyRate + ", effectiveDate="
 				+ effectiveDate + "]";
 	}
 
@@ -77,7 +56,7 @@ public class Currency {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
 		result = prime * result + ((effectiveDate == null) ? 0 : effectiveDate.hashCode());
 		return result;
 	}
@@ -91,7 +70,7 @@ public class Currency {
 		if (getClass() != obj.getClass())
 			return false;
 		Currency other = (Currency) obj;
-		if (code != other.code)
+		if (currencyCode != other.currencyCode)
 			return false;
 		if (effectiveDate == null) {
 			if (other.effectiveDate != null)

@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 import org.testng.annotations.Test;
 
-import currency.CurrencyCode;
-import currency.Exchange;
 import exceptions.FutureDateException;
 import exceptions.InvalidDateException;
+import model.CurrencyCode;
+import model.Exchange;
 import service.NbpJsonParser;
 import service.NbpLoader;
 

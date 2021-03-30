@@ -1,6 +1,6 @@
 package service;
 
-import currency.Currency;
+import model.Currency;
 
 public interface Parsing {
 	Currency parse(String data);

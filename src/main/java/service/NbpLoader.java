@@ -8,10 +8,10 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.LocalDate;
 
-import currency.CurrencyCode;
 import exceptions.ConnectionException;
 import exceptions.CurrencyException;
 import exceptions.InvalidDateException;
+import model.CurrencyCode;
 
 public class NbpLoader implements Loading {
 

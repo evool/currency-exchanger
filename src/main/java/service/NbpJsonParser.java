@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import currency.Currency;
-import currency.CurrencyCode;
 import exceptions.CurrencyException;
+import model.Currency;
+import model.CurrencyCode;
 
 public class NbpJsonParser implements Parsing {
 
