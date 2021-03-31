@@ -1,30 +1,34 @@
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.transaction.Transaction;
-
 import model.Currency;
+import model.CurrencyCache;
 import model.CurrencyCode;
-import repository.CurrencyRepository;
-import repository.CurrencyRepositoryImpl;
+import service.CacheSaver;
+import service.Loader;
+import service.NbpJsonToCurrencyParser;
+import service.NbpProvider;
+import service.Parsing;
+import service.Providing;
+import service.Saving;
 
 public class Main {
-	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
-	private static EntityManager em = factory.createEntityManager();
+//	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+//	private static EntityManager em = factory.createEntityManager();
 	public static void main(String[] args) {
-		String name = "Atatatata";
-		CurrencyCode code = CurrencyCode.EUR;
-		BigDecimal rate = new BigDecimal(4.5);
-		LocalDate date = LocalDate.now();
-		Currency c = new Currency(name, code, rate, date);
-		CurrencyRepository cr = new CurrencyRepositoryImpl(em);
 		
-		em.getTransaction().begin();
-		cr.saveCurrency(c);
-		em.getTransaction().commit();
+		Providing provider = new NbpProvider();
+		Parsing parser = new NbpJsonToCurrencyParser();
+		Loader loader = new Loader(provider, parser);
+		Saving saver = new CacheSaver();
+		Currency c;
+		
+		c = loader.load(CurrencyCode.EUR, LocalDate.now()).get();
+		System.out.println(c.getRate());
+		
+		saver.save(c);
+		System.out.println("Saved to cache");
+
+		c = CurrencyCache.find(CurrencyCode.EUR, LocalDate.now());
+		System.out.println(c.getRate());
 	}
 }

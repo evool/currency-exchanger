@@ -9,13 +9,15 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Cache<T> {
 	private int maxCacheSize = 1024;
-	private ConcurrentLinkedQueue<T> cache = new ConcurrentLinkedQueue<>();
+	protected ConcurrentLinkedQueue<T> cache;
 
 	public Cache() {
+		cache = new ConcurrentLinkedQueue<>();
 	}
 
 	public Cache(int maxCacheSize) {
 		this.maxCacheSize = maxCacheSize;
+		cache = new ConcurrentLinkedQueue<>();
 	}
 
 	public void add(T currency) {

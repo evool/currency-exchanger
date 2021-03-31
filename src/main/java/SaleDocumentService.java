@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import model.CurrencyCode;
-import model.Exchange;
+import service.Exchange;
 
 public class SaleDocumentService {
 	public static void insert() {

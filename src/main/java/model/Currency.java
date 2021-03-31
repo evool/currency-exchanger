@@ -57,6 +57,8 @@ public class Currency {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
+		result = prime * result + ((currencyName == null) ? 0 : currencyName.hashCode());
+		result = prime * result + ((currencyRate == null) ? 0 : currencyRate.hashCode());
 		result = prime * result + ((effectiveDate == null) ? 0 : effectiveDate.hashCode());
 		return result;
 	}
@@ -72,6 +74,16 @@ public class Currency {
 		Currency other = (Currency) obj;
 		if (currencyCode != other.currencyCode)
 			return false;
+		if (currencyName == null) {
+			if (other.currencyName != null)
+				return false;
+		} else if (!currencyName.equals(other.currencyName))
+			return false;
+		if (currencyRate == null) {
+			if (other.currencyRate != null)
+				return false;
+		} else if (!currencyRate.equals(other.currencyRate))
+			return false;
 		if (effectiveDate == null) {
 			if (other.effectiveDate != null)
 				return false;
@@ -79,4 +91,6 @@ public class Currency {
 			return false;
 		return true;
 	}
+
+
 }

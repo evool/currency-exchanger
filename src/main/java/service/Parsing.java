@@ -3,5 +3,5 @@ package service;
 import model.Currency;
 
 public interface Parsing {
-	Currency parse(String data);
+	Currency parse(Object data);
 }
