@@ -41,7 +41,8 @@ public class Main {
 		ex.setLoaders(cacheLoader, dbLoader, nbpLoader, fileLoader);
 		ex.setSenders(cacheSender, dbSender);
 		
-		BigDecimal value2 = ex.toPLN(money, code);
+		BigDecimal value2 = ex.toPLN(money, code, date);
+		System.out.println(value2);
 
 	}
 }

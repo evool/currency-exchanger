@@ -13,7 +13,16 @@ public class Exchange {
 	private Sending[] senders;
 	
 	public Exchange() {
-		this.loaders[0] = new Loader(new NbpProvider(), new NbpJsonToCurrencyParser());
+		Loading cacheLoader = new Loader(new CacheProvider());
+		Loading dbLoader = new Loader(new DatabaseProvider());
+		Loading nbpLoader = new Loader(new NbpProvider(), new NbpJsonToCurrencyParser());
+		Loading fileLoader = new Loader(new FileProvider());
+		
+		Sending cacheSender = new Sender(new CacheSaver());
+		Sending dbSender = new Sender(new DatabaseSaver());
+		
+		setLoaders(cacheLoader, dbLoader, nbpLoader, fileLoader);
+		setSenders(cacheSender, dbSender);
 	}
 	
 	public void setLoaders(Loading...loaders) {
