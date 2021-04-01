@@ -11,6 +11,11 @@ public class Loader implements Loading {
 	private Parsing parser;
 	private int attempts = 10;
 	
+	public Loader() {
+		this.provider = new NbpProvider();
+		this.parser = new NbpJsonToCurrencyParser();
+	}
+	
 	public Loader(Providing provider) {
 		this.provider = provider;
 	}

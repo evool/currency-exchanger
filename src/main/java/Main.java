@@ -1,34 +1,47 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import model.Currency;
-import model.CurrencyCache;
 import model.CurrencyCode;
+import service.CacheProvider;
 import service.CacheSaver;
+import service.DatabaseProvider;
+import service.DatabaseSaver;
+import service.Exchange;
+import service.FileProvider;
 import service.Loader;
+import service.Loading;
 import service.NbpJsonToCurrencyParser;
 import service.NbpProvider;
-import service.Parsing;
-import service.Providing;
-import service.Saving;
+import service.Sender;
+import service.Sending;
 
 public class Main {
-//	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
-//	private static EntityManager em = factory.createEntityManager();
 	public static void main(String[] args) {
-		
-		Providing provider = new NbpProvider();
-		Parsing parser = new NbpJsonToCurrencyParser();
-		Loader loader = new Loader(provider, parser);
-		Saving saver = new CacheSaver();
-		Currency c;
-		
-		c = loader.load(CurrencyCode.EUR, LocalDate.now()).get();
-		System.out.println(c.getRate());
-		
-		saver.save(c);
-		System.out.println("Saved to cache");
 
-		c = CurrencyCache.find(CurrencyCode.EUR, LocalDate.now());
-		System.out.println(c.getRate());
+		BigDecimal money = new BigDecimal(20.0);
+		CurrencyCode code = CurrencyCode.EUR;
+		LocalDate date = LocalDate.of(2021, 3, 20);
+		
+//		BigDecimal value = new Exchange().toPLN(money, code, date);
+		
+		
+		
+		
+		
+		
+		Loading cacheLoader = new Loader(new CacheProvider());
+		Loading dbLoader = new Loader(new DatabaseProvider());
+		Loading nbpLoader = new Loader(new NbpProvider(), new NbpJsonToCurrencyParser());
+		Loading fileLoader = new Loader(new FileProvider());
+		
+		Sending cacheSender = new Sender(new CacheSaver());
+		Sending dbSender = new Sender(new DatabaseSaver());
+		
+		Exchange ex = new Exchange();
+		ex.setLoaders(cacheLoader, dbLoader, nbpLoader, fileLoader);
+		ex.setSenders(cacheSender, dbSender);
+		
+		BigDecimal value2 = ex.toPLN(money, code);
+
 	}
 }

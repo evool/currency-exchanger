@@ -9,14 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+//@Table(name = "currency")
 public class Currency {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+//	@Column(name = "currency_name")
 	private String currencyName;
+//	@Column(name = "currency_code")
 	private CurrencyCode currencyCode;
+//	@Column(name = "currency_rate")
 	private BigDecimal currencyRate;
+//	@Column(name = "effective_date")
 	private LocalDate effectiveDate;
 	
 	public Currency(String name, CurrencyCode code, BigDecimal rate, LocalDate effectiveDate) {

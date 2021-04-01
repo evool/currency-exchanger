@@ -8,4 +8,6 @@ import model.CurrencyCode;
 
 public interface Loading {
 	Optional<Currency> load(CurrencyCode code, LocalDate date);
+	void setProvider(Providing provider);
+	void setParser(Parsing parser);
 }
