@@ -1,4 +1,4 @@
-package service;
+package service.saver;
 
 import model.Currency;
 import repository.CurrencyRepositoryImpl;

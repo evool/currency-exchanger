@@ -2,18 +2,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import model.CurrencyCode;
-import service.CacheProvider;
-import service.CacheSaver;
-import service.DatabaseProvider;
-import service.DatabaseSaver;
 import service.Exchange;
-import service.FileProvider;
 import service.Loader;
 import service.Loading;
-import service.NbpJsonToCurrencyParser;
-import service.NbpProvider;
 import service.Sender;
 import service.Sending;
+import service.parser.NbpJsonToCurrencyParser;
+import service.provider.CacheProvider;
+import service.provider.DatabaseProvider;
+import service.provider.FileProvider;
+import service.provider.NbpProvider;
+import service.saver.CacheSaver;
+import service.saver.DatabaseSaver;
 
 public class SaleDocumentService {
 	public static void insert() {
@@ -23,7 +23,7 @@ public class SaleDocumentService {
 		LocalDate date = LocalDate.of(2021, 3, 20);
 		
 		BigDecimal value = new Exchange().toPLN(money, code, date);
-		
+		new Exchange().toPLN(money, code, date.minusDays(1));
 		
 		
 		
@@ -42,6 +42,5 @@ public class SaleDocumentService {
 		ex.setSenders(cacheSender, dbSender);
 		
 		BigDecimal value2 = ex.toPLN(money, code);
-
 	}
 }

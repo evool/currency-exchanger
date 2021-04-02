@@ -1,4 +1,4 @@
-package service;
+package service.provider;
 
 import java.io.IOException;
 import java.net.URI;

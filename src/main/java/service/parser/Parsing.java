@@ -1,4 +1,4 @@
-package service;
+package service.parser;
 
 import model.Currency;
 

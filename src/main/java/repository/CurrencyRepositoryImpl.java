@@ -50,7 +50,7 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 	public Currency getCurrency(CurrencyCode code, LocalDate date) {
 		EntityManager em = getEntityManager();
 		TypedQuery<Currency> q = em.createQuery(
-				"SELECT c FROM Currency c WHERE c.currencyCode = :code AND c.effectiveDate = :date", Currency.class);
+				"SELECT c FROM Currency c WHERE c.code = :code AND c.effectiveDate = :date", Currency.class);
 		q.setParameter("code", code);
 		q.setParameter("date", date);
 		try {

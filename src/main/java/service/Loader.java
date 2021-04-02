@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import model.Currency;
 import model.CurrencyCode;
+import service.parser.NbpJsonToCurrencyParser;
+import service.parser.Parsing;
+import service.provider.NbpProvider;
+import service.provider.Providing;
 
 public class Loader implements Loading {
 	private Providing provider;

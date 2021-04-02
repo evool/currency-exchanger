@@ -7,6 +7,13 @@ import java.util.Optional;
 import exceptions.CurrencyException;
 import model.Currency;
 import model.CurrencyCode;
+import service.parser.NbpJsonToCurrencyParser;
+import service.provider.CacheProvider;
+import service.provider.DatabaseProvider;
+import service.provider.FileProvider;
+import service.provider.NbpProvider;
+import service.saver.CacheSaver;
+import service.saver.DatabaseSaver;
 
 public class Exchange {
 	private Loading[] loaders;

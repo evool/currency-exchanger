@@ -1,6 +1,8 @@
 package service;
 
 import model.Currency;
+import service.parser.Parsing;
+import service.saver.Saving;
 
 public class Sender implements Sending {
 	private Parsing parser;
