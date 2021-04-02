@@ -18,7 +18,9 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 	@Override
 	public Currency getCurrencyById(Long id) {
 		EntityManager em = getEntityManager();
-		return em.find(Currency.class, id);
+		Currency cur = em.find(Currency.class, id);
+		em.close();
+		return cur;
 	}
 
 	@Override
