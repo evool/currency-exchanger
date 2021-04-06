@@ -23,7 +23,30 @@ public class SaleDocumentService {
 		LocalDate date = LocalDate.of(2021, 3, 20);
 		
 		BigDecimal value = new Exchange().toPLN(money, code, date);
-		new Exchange().toPLN(money, code, date.minusDays(1));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -44,3 +67,16 @@ public class SaleDocumentService {
 		BigDecimal value2 = ex.toPLN(money, code);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

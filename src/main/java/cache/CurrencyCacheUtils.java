@@ -1,12 +1,10 @@
 package cache;
 
-import model.Currency;
-
 public class CurrencyCacheUtils {
 
-	private static Caching<Currency> cache = new CurrencyCache();
+	private static CurrencyCache cache = new CurrencyCache();
 	
-	public static Caching<Currency> get() {
+	public static CurrencyCache get() {
 		return cache;
 	}	
 }
