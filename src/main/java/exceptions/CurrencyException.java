@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class CurrencyException extends RuntimeException {
 
 	public CurrencyException(String message, Throwable cause) {

@@ -1,4 +1,4 @@
-package service;
+package service.parser;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,18 +8,21 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import currency.Currency;
-import currency.CurrencyCode;
 import exceptions.CurrencyException;
+import model.Currency;
+import model.CurrencyCode;
 
-public class NbpJsonParser implements Parsing {
+public class NbpJsonToCurrencyParser implements Parsing {
 
 	@Override
-	public Currency parse(String jsonAsString) {
+	public Currency parse(Object jsonAsString) {
+		if (jsonAsString instanceof String == false) {
+			throw new CurrencyException("NbpJsonParser needs String, but got " + jsonAsString.getClass());
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode jsonNode;
 		try {
-			jsonNode = mapper.readTree(jsonAsString);
+			jsonNode = mapper.readTree((String)jsonAsString);
 		} catch (JsonMappingException e) {
 			throw new CurrencyException(e);
 		} catch (JsonProcessingException e) {

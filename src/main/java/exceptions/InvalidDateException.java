@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class InvalidDateException extends CurrencyException {
 
 	public InvalidDateException(String message, Throwable cause) {

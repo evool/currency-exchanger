@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class ConnectionException extends CurrencyException {
 
 	public ConnectionException(String message, Throwable cause) {

@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class FutureDateException extends CurrencyException {
 
 	public FutureDateException(String message, Throwable cause) {
