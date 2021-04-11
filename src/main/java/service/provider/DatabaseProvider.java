@@ -11,5 +11,4 @@ public class DatabaseProvider implements Providing {
 	public Object find(CurrencyCode code, LocalDate date) {
 		return new CurrencyRepositoryImpl().find(code, date);
 	}
-
 }

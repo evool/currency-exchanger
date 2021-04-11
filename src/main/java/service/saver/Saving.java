@@ -1,7 +1,7 @@
 package service.saver;
 
-import model.Currency;
+import entity.CurrencyEntity;
 
 public interface Saving {
-	void save(Currency currency);
+	void save(CurrencyEntity currency);
 }

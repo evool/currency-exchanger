@@ -1,19 +1,19 @@
 package cache;
 
 import java.time.LocalDate;
+import java.util.Currency;
 import java.util.Iterator;
 
-import model.Currency;
+import entity.CurrencyEntity;
 import model.CurrencyCode;
-import repository.CurrencyRepository;
 import service.LoadingUtils;
 
-public class CurrencyCache extends Cache<Currency> implements CurrencyRepository {
+public class CurrencyCache extends Cache<CurrencyEntity> {
 	
-	public Currency find(CurrencyCode code, LocalDate date) {
+	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
 		date = LoadingUtils.verifyAndCorrectDate(date);
-		Iterator<Currency> i = cache.iterator();
-		Currency temp;
+		Iterator<CurrencyEntity> i = cache.iterator();
+		CurrencyEntity temp;
 		while (i.hasNext()) {
 			temp = i.next();
 			if (temp.getCode() == code && temp.getEffectiveDate().equals(date)) {
@@ -24,13 +24,13 @@ public class CurrencyCache extends Cache<Currency> implements CurrencyRepository
 	}
 
 	@Override
-	public Currency get(Long id) {
+	public CurrencyEntity get(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Currency save(Currency currency) {
+	public CurrencyEntity save(Currency currency) {
 		// TODO Auto-generated method stub
 		return null;
 	}

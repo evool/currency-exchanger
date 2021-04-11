@@ -1,10 +1,8 @@
 package service;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import entity.CurrencyEntity;
-import model.Currency;
 import model.CurrencyCode;
 import service.parser.NbpJsonToCurrencyParser;
 import service.parser.Parsing;

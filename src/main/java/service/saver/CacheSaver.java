@@ -1,12 +1,12 @@
 package service.saver;
 
 import cache.CurrencyCacheUtils;
-import model.Currency;
+import entity.CurrencyEntity;
 
 public class CacheSaver implements Saving {
 
 	@Override
-	public void save(Currency currency) {
+	public void save(CurrencyEntity currency) {
 		CurrencyCacheUtils.get().add(currency);
 	}
 }

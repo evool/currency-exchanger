@@ -2,7 +2,6 @@ package service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Optional;
 
 import entity.CurrencyEntity;
 import exceptions.CurrencyException;

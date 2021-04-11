@@ -20,8 +20,8 @@ import model.CurrencyCode;
 
 @Entity
 @Table(name = "currencies")
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyEntity {
 	

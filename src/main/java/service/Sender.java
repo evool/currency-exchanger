@@ -1,6 +1,6 @@
 package service;
 
-import model.Currency;
+import entity.CurrencyEntity;
 import service.parser.Parsing;
 import service.saver.Saving;
 
@@ -18,7 +18,7 @@ public class Sender implements Sending {
 	}
 	
 	@Override
-	public void send(Currency data) {
+	public void send(CurrencyEntity data) {
 		if(parser == null) {
 			saver.save(data);
 		} else {

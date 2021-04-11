@@ -14,9 +14,9 @@ public class NbpJsonToCurrencyParser implements Parsing {
 
 	@Override
 	public CurrencyEntity parse(String jsonAsString) {
-		if (jsonAsString instanceof String == false) {
-			throw new CurrencyException("NbpJsonParser needs String, but got " + jsonAsString.getClass());
-		}
+//		if (jsonAsString instanceof String == false) {
+//			throw new CurrencyException("NbpJsonParser needs String, but got " + jsonAsString.getClass());
+//		}
 		ObjectMapper mapper = JsonMapper.builder()
 		        .findAndAddModules()
 		        .build();

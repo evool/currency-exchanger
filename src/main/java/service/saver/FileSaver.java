@@ -1,11 +1,11 @@
 package service.saver;
 
-import model.Currency;
+import entity.CurrencyEntity;
 
 public class FileSaver implements Saving {
 
 	@Override
-	public void save(Currency currency) {
+	public void save(CurrencyEntity currency) {
 		// TODO Auto-generated method stub
 		
 	}
