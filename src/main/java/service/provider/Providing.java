@@ -4,6 +4,6 @@ import java.time.LocalDate;
 
 import model.CurrencyCode;
 
-public interface Providing {
-	Object find(CurrencyCode code, LocalDate date);
+public interface Providing <T> {
+	T find(CurrencyCode code, LocalDate date);
 }

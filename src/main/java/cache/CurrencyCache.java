@@ -5,9 +5,10 @@ import java.util.Iterator;
 
 import model.Currency;
 import model.CurrencyCode;
+import repository.CurrencyRepository;
 import service.LoadingUtils;
 
-public class CurrencyCache extends Cache<Currency> {
+public class CurrencyCache extends Cache<Currency> implements CurrencyRepository {
 	
 	public Currency find(CurrencyCode code, LocalDate date) {
 		date = LoadingUtils.verifyAndCorrectDate(date);
@@ -19,6 +20,18 @@ public class CurrencyCache extends Cache<Currency> {
 				return temp;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public Currency get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Currency save(Currency currency) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -3,6 +3,7 @@ package service;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import entity.CurrencyEntity;
 import model.Currency;
 import model.CurrencyCode;
 import service.parser.NbpJsonToCurrencyParser;
@@ -45,16 +46,15 @@ public class Loader implements Loading {
 		this.parser = parser;
 	}
 
-	public Optional<Currency> load(CurrencyCode code, LocalDate sourceDate) {
+	public CurrencyEntity load(CurrencyCode code, LocalDate sourceDate) {
 		LocalDate date = LoadingUtils.verifyAndCorrectDate(sourceDate);
 		for(int i = 0; i < attempts; i++) {
 			Object data = provider.find(code, date);
 			if(data != null) {
-				return parser == null ? Optional.ofNullable((Currency) data) : Optional.of(parser.parse(data));
+				return parser == null ? (CurrencyEntity) data : parser.parse((String) data);
 			}
 			date = date.minusDays(1);
 		}
-		return Optional.empty();
-//		throw new CurrencyException("Cannot find currency " + code + " from " + sourceDate);
+		return null;
 	}
 }

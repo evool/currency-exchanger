@@ -4,8 +4,8 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import entity.CurrencyEntity;
 import exceptions.CurrencyException;
-import model.Currency;
 import model.CurrencyCode;
 import service.parser.NbpJsonToCurrencyParser;
 import service.provider.CacheProvider;
@@ -41,7 +41,7 @@ public class Exchange {
 	}
 	
 	public BigDecimal toPLN(BigDecimal amount, CurrencyCode code, LocalDate date) {
-		Currency currency = load(code, date);
+		CurrencyEntity currency = load(code, date);
 		save(currency);
 		return amount.multiply(currency.getRate());
 	}
@@ -51,7 +51,7 @@ public class Exchange {
 	}
 	
 	public BigDecimal fromPLN(BigDecimal amount, CurrencyCode code, LocalDate date) {
-		Currency currency = load(code, date);
+		CurrencyEntity currency = load(code, date);
 		save(currency);
 		return amount.divide(currency.getRate(), 4, RoundingMode.HALF_UP);
 	}
@@ -60,18 +60,18 @@ public class Exchange {
 		return fromPLN(amount, code, LocalDate.now());
 	}
 
-	private Currency load(CurrencyCode code, LocalDate date) {
-		Optional<Currency> currency;
+	private CurrencyEntity load(CurrencyCode code, LocalDate date) {
+		CurrencyEntity currency;
 		for(int i = 0; i < loaders.length; i++) {
 			currency = loaders[i].load(code, date);
-			if(currency.isPresent()) {
-				return currency.get();
+			if(currency != null) {
+				return currency;
 			}
 		}
 		throw new CurrencyException();
 	}
 	
-	private void save(Currency currency) {
+	private void save(CurrencyEntity currency) {
 		for(int i = 0; i < senders.length; i++) {
 			senders[i].send(currency);
 		}

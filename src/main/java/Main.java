@@ -1,18 +1,24 @@
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
-import cache.CurrencyCacheUtils;
+import entity.CurrencyEntity;
 import model.CurrencyCode;
-import service.Exchange;
+import service.parser.NbpJsonToCurrencyParser;
+import service.parser.Parsing;
+import service.provider.NbpProvider;
+import service.provider.Providing;
 
 public class Main {
+	
 	public static void main(String[] args) {
 
-//		for(CurrencyCode c : CurrencyCode.values()) {
-//			new Exchange().toPLN(BigDecimal.TEN, c);
-//		}
+		Providing<String> provider = new NbpProvider();
+		Parsing parser = new NbpJsonToCurrencyParser();
 		
-		SaleDocumentService.insert();
+		CurrencyEntity ce;
 		
-//		CurrencyCacheUtils.get().printAll();
+		String s = provider.find(CurrencyCode.EUR, LocalDate.now());
+		ce = parser.parse(s);
+		
+		
 	}
 }

@@ -10,17 +10,15 @@ import java.time.LocalDate;
 
 import exceptions.ConnectionException;
 import exceptions.CurrencyException;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import model.CurrencyCode;
 
-public class NbpProvider implements Providing {
-
-	String url = "http://api.nbp.pl/api/exchangerates/rates/a/%s/%s/?format=json";
+@NoArgsConstructor
+@AllArgsConstructor
+public class NbpProvider implements Providing<String> {
 	
-	public NbpProvider() {}
-
-	public NbpProvider(String dataPath) {
-		this.url = dataPath;
-	}
+	private String url = "http://api.nbp.pl/api/exchangerates/rates/a/%s/%s/?format=json";
 
 	private static final HttpClient httpClient = HttpClient.newBuilder()
 			.version(HttpClient.Version.HTTP_1_1)
@@ -28,7 +26,7 @@ public class NbpProvider implements Providing {
 			.build();
 
 	@Override
-	public Object find(CurrencyCode code, LocalDate date) {
+	public String find(CurrencyCode code, LocalDate date) {
 		HttpRequest request = HttpRequest.newBuilder()
 				.GET()
 				.uri(URI.create(String.format(url, code, date)))

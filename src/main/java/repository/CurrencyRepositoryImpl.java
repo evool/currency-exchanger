@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import model.Currency;
+import entity.CurrencyEntity;
 import model.CurrencyCode;
 
 public class CurrencyRepositoryImpl implements CurrencyRepository {
@@ -16,15 +16,15 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 	}
 	
 	@Override
-	public Currency getCurrencyById(Long id) {
+	public CurrencyEntity get(Long id) {
 		EntityManager em = getEntityManager();
-		Currency cur = em.find(Currency.class, id);
+		CurrencyEntity cur = em.find(CurrencyEntity.class, id);
 		em.close();
 		return cur;
 	}
 
 	@Override
-	public Currency saveCurrency(Currency currency) {
+	public CurrencyEntity save(CurrencyEntity currency) {
 		EntityManager em = getEntityManager();
 		em.getTransaction().begin();
 		if (currency.getId() == null) {
@@ -47,10 +47,10 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 //	}
 
 	@Override
-	public Currency getCurrency(CurrencyCode code, LocalDate date) {
+	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
 		EntityManager em = getEntityManager();
-		TypedQuery<Currency> q = em.createQuery(
-				"SELECT c FROM Currency c WHERE c.code = :code AND c.effectiveDate = :date", Currency.class);
+		TypedQuery<CurrencyEntity> q = em.createQuery(
+				"SELECT c FROM Currency c WHERE c.code = :code AND c.effectiveDate = :date", CurrencyEntity.class);
 		q.setParameter("code", code);
 		q.setParameter("date", date);
 		try {
@@ -60,6 +60,5 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 		} finally {
 			em.close();
 		}
-		
 	}
 }

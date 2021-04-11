@@ -1,7 +1,7 @@
 package service.parser;
 
-import model.Currency;
+import entity.CurrencyEntity;
 
 public interface Parsing {
-	Currency parse(Object data);
+	CurrencyEntity parse(String data);
 }
