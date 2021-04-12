@@ -10,7 +10,7 @@ import entity.CurrencyEntity;
 import exceptions.CurrencyException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NbpJsonToCurrencyParser implements Parsing<CurrencyEntity, String> {
+public class NbpJsonToCurrencyParser implements Parsing<String, CurrencyEntity> {
 
 	@Override
 	public CurrencyEntity parse(String jsonAsString) {

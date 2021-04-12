@@ -10,6 +10,12 @@ public class DatabaseProvider implements Providing<CurrencyEntity> {
 	
 	@Override
 	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
-		return new CurrencyRepositoryImpl().find(code, date);
+		CurrencyEntity currency = new CurrencyRepositoryImpl().find(code, date);
+		if(currency != null) {
+			if(currency.getRate(date) != null) {
+				return currency;				
+			}
+		}
+		return null;
 	}
 }

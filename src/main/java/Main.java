@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import entity.CurrencyEntity;
@@ -8,6 +9,7 @@ import provider.NbpProvider;
 import provider.Providing;
 import repository.CurrencyRepository;
 import repository.CurrencyRepositoryImpl;
+import service.Exchange;
 import service.LoadingUtils;
 
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
 		CurrencyRepository cr = new CurrencyRepositoryImpl();
 		
 		Providing<String> provider = new NbpProvider();
-		Parsing parser = new NbpJsonToCurrencyParser();
+		Parsing<String, CurrencyEntity> parser = new NbpJsonToCurrencyParser();
 		
 		CurrencyEntity ce;
 		
@@ -34,5 +36,8 @@ public class Main {
 		s = provider.find(code, date);
 		ce = parser.parse(s);
 		cr.save(ce);
+		
+		BigDecimal b = new Exchange().toPLN(BigDecimal.TEN, CurrencyCode.CZK, date);
+		System.out.println(b);
 	}
 }

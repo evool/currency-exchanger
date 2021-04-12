@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import entity.CurrencyEntity;
@@ -65,11 +64,14 @@ public class CurrencyRepositoryImpl implements CurrencyRepository {
 	@Override
 	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
 		EntityManager em = getEntityManager();
-		TypedQuery<CurrencyEntity> q = em.createQuery("SELECT c FROM CurrencyEntity c WHERE c.code = :code AND c.effectiveDate = :date", CurrencyEntity.class);
+		TypedQuery<CurrencyEntity> q = em.createQuery("SELECT c FROM CurrencyEntity c WHERE c.code = :code", CurrencyEntity.class);
 		q.setParameter("code", code);
-		q.setParameter("date", date);
 		try {
-			return q.getSingleResult();			
+			CurrencyEntity currency = q.getSingleResult();
+			if(currency.getRate(date) != null) {
+				return currency;
+			}
+			return null;
 		} catch(NoResultException e) {
 			return null;
 		} finally {
