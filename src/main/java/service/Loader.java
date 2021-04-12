@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 import entity.CurrencyEntity;
 import model.CurrencyCode;
-import service.parser.NbpJsonToCurrencyParser;
-import service.parser.Parsing;
-import service.provider.NbpProvider;
-import service.provider.Providing;
+import parser.NbpJsonToCurrencyParser;
+import parser.Parsing;
+import provider.NbpProvider;
+import provider.Providing;
 
 public class Loader implements Loading {
 	private Providing provider;
@@ -49,7 +49,10 @@ public class Loader implements Loading {
 		for(int i = 0; i < attempts; i++) {
 			Object data = provider.find(code, date);
 			if(data != null) {
-				return parser == null ? (CurrencyEntity) data : parser.parse((String) data);
+				if(parser == null) {
+					return (CurrencyEntity) data;
+				}
+				return (CurrencyEntity) parser.parse((Object)data);
 			}
 			date = date.minusDays(1);
 		}

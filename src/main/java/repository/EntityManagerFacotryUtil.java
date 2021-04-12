@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 
 public class EntityManagerFacotryUtil {
 	
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("thePersistenceUnit");
+	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("thePersistenceUnit");
 	
 	public static EntityManagerFactory getFactory() {
 		return emf;

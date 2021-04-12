@@ -1,4 +1,4 @@
-package service.provider;
+package provider;
 
 import java.time.LocalDate;
 

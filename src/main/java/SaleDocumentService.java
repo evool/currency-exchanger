@@ -2,18 +2,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import model.CurrencyCode;
+import parser.NbpJsonToCurrencyParser;
+import provider.CacheProvider;
+import provider.DatabaseProvider;
+import provider.FileProvider;
+import provider.NbpProvider;
+import saver.CacheSaver;
+import saver.DatabaseSaver;
 import service.Exchange;
 import service.Loader;
 import service.Loading;
 import service.Sender;
 import service.Sending;
-import service.parser.NbpJsonToCurrencyParser;
-import service.provider.CacheProvider;
-import service.provider.DatabaseProvider;
-import service.provider.FileProvider;
-import service.provider.NbpProvider;
-import service.saver.CacheSaver;
-import service.saver.DatabaseSaver;
 
 public class SaleDocumentService {
 	public static void insert() {

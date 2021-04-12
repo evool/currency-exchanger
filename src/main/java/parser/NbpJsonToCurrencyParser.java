@@ -1,4 +1,4 @@
-package service.parser;
+package parser;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,7 +10,7 @@ import entity.CurrencyEntity;
 import exceptions.CurrencyException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NbpJsonToCurrencyParser implements Parsing {
+public class NbpJsonToCurrencyParser implements Parsing<CurrencyEntity, String> {
 
 	@Override
 	public CurrencyEntity parse(String jsonAsString) {
@@ -21,7 +21,7 @@ public class NbpJsonToCurrencyParser implements Parsing {
 		        .findAndAddModules()
 		        .build();
 		try {
-			return mapper.readValue((String)jsonAsString, CurrencyEntity.class);
+			return mapper.readValue(jsonAsString, CurrencyEntity.class);
 		} catch (JsonMappingException e) {
 			throw new CurrencyException(e);
 		} catch (JsonProcessingException e) {

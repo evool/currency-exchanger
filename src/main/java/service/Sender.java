@@ -1,8 +1,8 @@
 package service;
 
 import entity.CurrencyEntity;
-import service.parser.Parsing;
-import service.saver.Saving;
+import parser.Parsing;
+import saver.Saving;
 
 public class Sender implements Sending {
 	private Parsing parser;

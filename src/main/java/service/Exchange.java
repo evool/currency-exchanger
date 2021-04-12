@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import entity.CurrencyEntity;
 import exceptions.CurrencyException;
 import model.CurrencyCode;
-import service.parser.NbpJsonToCurrencyParser;
-import service.provider.CacheProvider;
-import service.provider.DatabaseProvider;
-import service.provider.FileProvider;
-import service.provider.NbpProvider;
-import service.saver.CacheSaver;
-import service.saver.DatabaseSaver;
+import parser.NbpJsonToCurrencyParser;
+import provider.CacheProvider;
+import provider.DatabaseProvider;
+import provider.FileProvider;
+import provider.NbpProvider;
+import saver.CacheSaver;
+import saver.DatabaseSaver;
 
 public class Exchange {
 	private Loading[] loaders;
@@ -42,7 +42,7 @@ public class Exchange {
 	public BigDecimal toPLN(BigDecimal amount, CurrencyCode code, LocalDate date) {
 		CurrencyEntity currency = load(code, date);
 		save(currency);
-		return amount.multiply(currency.getRate());
+		return amount.multiply(currency.getRate(date));
 	}
 	
 	public BigDecimal toPLN(BigDecimal amount, CurrencyCode code) {
@@ -52,7 +52,7 @@ public class Exchange {
 	public BigDecimal fromPLN(BigDecimal amount, CurrencyCode code, LocalDate date) {
 		CurrencyEntity currency = load(code, date);
 		save(currency);
-		return amount.divide(currency.getRate(), 4, RoundingMode.HALF_UP);
+		return amount.divide(currency.getRate(date), 4, RoundingMode.HALF_UP);
 	}
 	
 	public BigDecimal fromPLN(BigDecimal amount, CurrencyCode code) {
@@ -67,7 +67,7 @@ public class Exchange {
 				return currency;
 			}
 		}
-		throw new CurrencyException();
+		throw new CurrencyException("None of the providers delivered data.");
 	}
 	
 	private void save(CurrencyEntity currency) {

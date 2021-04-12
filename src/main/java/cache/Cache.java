@@ -7,11 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// moznaby zaimplementowac gotowca np. guava cache
-// ponoc niemal zawsze ostatecznie wychodzi to na lepsze
-
 @NoArgsConstructor
-public class Cache<T> implements Caching<T> {
+public class Cache<T> {
 	@Getter @Setter
 	private int maxSize = 1024;
 	@Getter
@@ -24,7 +21,7 @@ public class Cache<T> implements Caching<T> {
 		this.maxSize = maxSize;
 	}
 	
-	public void add(T obj) {
+	public void save(T obj) {
 		while(cache.size() > maxSize) {
 			cache.poll();
 		}

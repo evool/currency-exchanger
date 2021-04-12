@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "rates")
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RateEntity {
 	
@@ -27,7 +27,7 @@ public class RateEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+    @ManyToOne
 	private CurrencyEntity currency;
 	
 	private BigDecimal mid;
