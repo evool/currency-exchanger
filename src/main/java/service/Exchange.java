@@ -61,6 +61,7 @@ public class Exchange {
 
 	private CurrencyEntity load(CurrencyCode code, LocalDate date) {
 		CurrencyEntity currency;
+		date = LoadingUtils.verifyAndCorrectDate(date);
 		for(int i = 0; i < loaders.length; i++) {
 			currency = loaders[i].load(code, date);
 			if(currency != null) {

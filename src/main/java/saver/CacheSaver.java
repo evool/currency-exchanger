@@ -7,6 +7,6 @@ public class CacheSaver implements Saving<CurrencyEntity> {
 
 	@Override
 	public void save(CurrencyEntity currency) {
-		CurrencyCacheUtils.get().save(currency);
+		CurrencyCacheUtils.get().saveCurrency(currency);
 	}
 }

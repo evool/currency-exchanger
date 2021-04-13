@@ -6,9 +6,10 @@ import entity.CurrencyEntity;
 import model.CurrencyCode;
 
 public interface CurrencyRepository {
-	CurrencyEntity getById(Long id);
+	CurrencyEntity getCurrencyById(Long id);
+	CurrencyEntity getCurrencyByCode(CurrencyCode code);
 	CurrencyEntity find(CurrencyCode code, LocalDate date);
-	void save(CurrencyEntity currency);
+	void saveCurrency(CurrencyEntity currency);
 //	void update(CurrencyEntity currency);
 //	void delete(CurrencyEntity currency);
 }

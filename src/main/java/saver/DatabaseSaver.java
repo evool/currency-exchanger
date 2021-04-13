@@ -7,7 +7,7 @@ public class DatabaseSaver implements Saving<CurrencyEntity> {
 
 	@Override
 	public void save(CurrencyEntity currency) {
-		new CurrencyRepositoryImpl().save(currency);
+		new CurrencyRepositoryImpl().saveCurrency(currency);
 	}
 	
 }

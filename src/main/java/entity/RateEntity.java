@@ -28,6 +28,7 @@ public class RateEntity {
 	private Long id;
 	
     @ManyToOne
+//    @JoinColumn(name = "currency_id", referencedColumnName = "id")
 	private CurrencyEntity currency;
 	
 	private BigDecimal mid;

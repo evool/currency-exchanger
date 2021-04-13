@@ -1,43 +1,47 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import entity.CurrencyEntity;
 import model.CurrencyCode;
 import parser.NbpJsonToCurrencyParser;
-import parser.Parsing;
 import provider.NbpProvider;
-import provider.Providing;
-import repository.CurrencyRepository;
-import repository.CurrencyRepositoryImpl;
+import saver.DatabaseSaver;
 import service.Exchange;
-import service.LoadingUtils;
+import service.Loader;
+import service.Sender;
 
 public class Main {
 	
+//	static final int ILOSC_DNI = 2;
+//	static LocalDate data;
+	
 	public static void main(String[] args) {
-		LocalDate date = LocalDate.of(2021, 4, 7);
-		date = LoadingUtils.verifyAndCorrectDate(date);
-		CurrencyCode code = CurrencyCode.EUR;
-		CurrencyRepository cr = new CurrencyRepositoryImpl();
+
+		SaleDocumentService.insert();
 		
-		Providing<String> provider = new NbpProvider();
-		Parsing<String, CurrencyEntity> parser = new NbpJsonToCurrencyParser();
+//		Exchange ex = new Exchange();
+//		ex.setLoaders(new Loader(new NbpProvider(), new NbpJsonToCurrencyParser()));
+//		ex.setSenders(new Sender(new DatabaseSaver()));
+//		
+//		for (CurrencyCode code : CurrencyCode.values()) {
+//			data = LocalDate.now();
+//			for(int i = 0; i < ILOSC_DNI; i++) {
+//				System.out.println(code + " " + data);
+//				ex.toPLN(BigDecimal.ONE, code, data);
+//				data = data.minusDays(1);
+//			}
+//		}
+
 		
-		CurrencyEntity ce;
-		
-		String s = provider.find(code, date);
-		ce = parser.parse(s);		
-		cr.save(ce);
-		s = provider.find(code, LocalDate.of(2021, 4, 8));
-		ce = parser.parse(s);
-		cr.save(ce);
-		
-		code = CurrencyCode.AUD;
-		s = provider.find(code, date);
-		ce = parser.parse(s);
-		cr.save(ce);
-		
-		BigDecimal b = new Exchange().toPLN(BigDecimal.TEN, CurrencyCode.CZK, date);
-		System.out.println(b);
+//		CurrencyEntity currency = new CurrencyEntity();
+//		currency.setCode(CurrencyCode.USD);
+//		currency.setName("Dolar amerykanski");
+//
+//		CountryEntity country = new CountryEntity("AMERYKA");
+//		
+//		Set<CountryEntity> set = new HashSet<>();
+//		set.add(country);
+//		
+//		currency.setCountries(set);
+//		new CurrencyRepositoryImpl().saveCurrency(currency);
 	}
 }

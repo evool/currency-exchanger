@@ -1,9 +1,9 @@
-//package repository;
-//
-//import entity.CountryEntity;
-//
-//public interface CountryRepository {
-//	CountryEntity getById(Long id);
-//	CountryEntity find();
-//	CountryEntity save(CountryEntity country);
-//}
+package repository;
+
+import entity.CountryEntity;
+
+public interface CountryRepository {
+	CountryEntity getCountryById(Long id);
+	CountryEntity getCountryByName(String name);
+	void saveCountry(CountryEntity country);
+}
