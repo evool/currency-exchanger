@@ -30,16 +30,16 @@ public class CountryRepositoryImpl implements CountryRepository {
 		em.close();
 		return country;
 	}
-
+	
 	@Override
 	public void saveCountry(CountryEntity country) {
 		em = getEntityManager();
 		em.getTransaction().begin();
-		if(country.getId() == null) {
-			em.persist(country);
-		} else {
+//		if(country.getId() == null) {
+//			em.persist(country);
+//		} else {
 			em.merge(country);
-		}
+//		}
 		em.getTransaction().commit();
 		em.close();
 	}

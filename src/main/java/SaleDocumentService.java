@@ -66,15 +66,15 @@ public class SaleDocumentService {
 		CountryEntity country2 = new CountryEntity("Europa");
 		CountryEntity country3 = new CountryEntity("Wielka Brytania");
 		
-		currency1.setCountries(Set.of(country1, country2));
+		currency1.setCountries(Set.of(country1));
 		currency2.setCountries(Set.of(country2, country1));
 		currency3.setCountries(Set.of(country2));
 		currencyRepo.saveCurrency(currency1);
 		currencyRepo.saveCurrency(currency2);
 		currencyRepo.saveCurrency(currency3);
 		
-		country3.setCurrencies(Set.of(currency4, currency5));
-		countryRepo.saveCountry(country3);
+//		country3.setCurrencies(Set.of(currency4, currency5));
+//		countryRepo.saveCountry(country3);
 	}
 }
 

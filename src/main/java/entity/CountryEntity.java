@@ -29,7 +29,7 @@ public class CountryEntity {
 	private String name;
 	
 	@ManyToMany(mappedBy = "countries")
-	private Set<CurrencyEntity> currencies = new HashSet<>();
+	private Set<CurrencyEntity> currencies;
 
 	public CountryEntity(String name) {
 		this.name = name;

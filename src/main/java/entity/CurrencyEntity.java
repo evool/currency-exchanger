@@ -48,12 +48,11 @@ public class CurrencyEntity {
 	@JoinColumn(name = "currency_id", referencedColumnName = "id")
 	private Set<RateEntity> rates;
 	
-	@ManyToMany(cascade = { CascadeType.ALL } )
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "Currencies_Countries",
-		joinColumns = { @JoinColumn(name = "currency_id") },
-		inverseJoinColumns = { @JoinColumn(name = "country_id") }
-	)
+		joinColumns = @JoinColumn(name = "currency_id"),
+		inverseJoinColumns = @JoinColumn(name = "country_id"))
 	private Set<CountryEntity> countries;
 	
 	public CurrencyEntity(String name, CurrencyCode code) {
