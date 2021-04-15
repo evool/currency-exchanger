@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,12 +12,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -28,8 +26,7 @@ import model.CurrencyCode;
 
 @Entity
 @Table(name = "currencies")
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyEntity {
@@ -38,25 +35,21 @@ public class CurrencyEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String currency;
+	@JsonAlias("currency")
+	private String name;
 	
 	@Enumerated(EnumType.STRING)
-//	@Column(unique = true)
+	@Column(unique = true, length = 3)
 	private CurrencyCode code;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "currency_id", referencedColumnName = "id")
+	@OneToMany(mappedBy = "currency")  //(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Set<RateEntity> rates;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-		name = "Currencies_Countries",
-		joinColumns = @JoinColumn(name = "currency_id"),
-		inverseJoinColumns = @JoinColumn(name = "country_id"))
+	@ManyToMany
 	private Set<CountryEntity> countries;
 	
 	public CurrencyEntity(String name, CurrencyCode code) {
-		this.currency = name;
+		this.name = name;
 		this.code = code;
 	}
 	

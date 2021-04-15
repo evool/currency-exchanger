@@ -1,28 +1,7 @@
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import entity.CountryEntity;
 import entity.CurrencyEntity;
 import model.CurrencyCode;
-import parser.NbpJsonToCurrencyParser;
-import provider.CacheProvider;
-import provider.DatabaseProvider;
-import provider.FileProvider;
-import provider.NbpProvider;
-import repository.CountryRepository;
-import repository.CountryRepositoryImpl;
 import repository.CurrencyRepository;
 import repository.CurrencyRepositoryImpl;
-import saver.CacheSaver;
-import saver.DatabaseSaver;
-import service.Exchange;
-import service.Loader;
-import service.Loading;
-import service.Sender;
-import service.Sending;
 
 public class SaleDocumentService {
 	public static void insert() {
@@ -50,28 +29,28 @@ public class SaleDocumentService {
 //		ex.setSenders(dbSender);
 //		
 //		BigDecimal value2 = ex.toPLN(money, code);
-		
+
 		
 		// Kraje
-		CurrencyRepository currencyRepo = new CurrencyRepositoryImpl();
-		CountryRepository countryRepo = new CountryRepositoryImpl();
+//		CurrencyRepository currencyRepo = new CurrencyRepositoryImpl();
+//		CountryRepository countryRepo = new CountryRepositoryImpl();
+//		
+//		CurrencyEntity currency1 = new CurrencyEntity("Dolar", CurrencyCode.USD);
+//		CurrencyEntity currency2 = new CurrencyEntity("Euro", CurrencyCode.EUR);
+//		CurrencyEntity currency3 = new CurrencyEntity("Korona czeska", CurrencyCode.CZK);
+//		CurrencyEntity currency4 = new CurrencyEntity("Franki szwajcarskie", CurrencyCode.CHF);
+//		CurrencyEntity currency5 = new CurrencyEntity("Funty brytyjskie", CurrencyCode.GBP);
 		
-		CurrencyEntity currency1 = new CurrencyEntity("Dolar", CurrencyCode.USD);
-		CurrencyEntity currency2 = new CurrencyEntity("Euro", CurrencyCode.EUR);
-		CurrencyEntity currency3 = new CurrencyEntity("Korona czeska", CurrencyCode.CZK);
-		CurrencyEntity currency4 = new CurrencyEntity("Franki szwajcarskie", CurrencyCode.CHF);
-		CurrencyEntity currency5 = new CurrencyEntity("Funty brytyjskie", CurrencyCode.GBP);
+//		CountryEntity country1 = new CountryEntity("Ameryka");
+//		CountryEntity country2 = new CountryEntity("Europa");
+//		CountryEntity country3 = new CountryEntity("Wielka Brytania");
 		
-		CountryEntity country1 = new CountryEntity("Ameryka");
-		CountryEntity country2 = new CountryEntity("Europa");
-		CountryEntity country3 = new CountryEntity("Wielka Brytania");
-		
-		currency1.setCountries(Set.of(country1));
-		currency2.setCountries(Set.of(country2, country1));
-		currency3.setCountries(Set.of(country2));
-		currencyRepo.saveCurrency(currency1);
-		currencyRepo.saveCurrency(currency2);
-		currencyRepo.saveCurrency(currency3);
+//		currency1.setCountries(Set.of(country1));
+//		currency2.setCountries(Set.of(country2, country1));
+//		currency3.setCountries(Set.of(country2));
+//		currencyRepo.saveCurrency(currency1);
+//		currencyRepo.saveCurrency(currency2);
+//		currencyRepo.saveCurrency(currency3);
 		
 //		country3.setCurrencies(Set.of(currency4, currency5));
 //		countryRepo.saveCountry(country3);

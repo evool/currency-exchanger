@@ -1,6 +1,5 @@
 package entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,18 +16,19 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "countries")
+@Getter @Setter
 @NoArgsConstructor
-@Getter
-@Setter
+
 public class CountryEntity {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@Column(unique = true)
+	@Column(unique = true)
 	private String name;
 	
-	@ManyToMany(mappedBy = "countries")
+	@ManyToMany
 	private Set<CurrencyEntity> currencies;
 
 	public CountryEntity(String name) {
