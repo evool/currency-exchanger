@@ -10,6 +10,6 @@ public class CacheProvider implements Providing {
 
 	@Override
 	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
-		return CurrencyCacheUtils.get().find(code, date);
+		return CurrencyCacheUtils.getCache().find(code, date);
 	}
 }

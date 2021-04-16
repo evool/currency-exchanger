@@ -22,6 +22,7 @@ public class CurrencyCache extends Cache<CurrencyEntity> implements CurrencyRepo
 		return null;
 	}
 	
+	@Override
 	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
 		Iterator<CurrencyEntity> i = cache.iterator();
 		CurrencyEntity temp;

@@ -45,7 +45,7 @@ public class CurrencyEntity {
 	@OneToMany(mappedBy = "currency")  //(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Set<RateEntity> rates;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "currencies")
 	private Set<CountryEntity> countries;
 	
 	public CurrencyEntity(String name, CurrencyCode code) {

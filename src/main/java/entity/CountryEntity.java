@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -29,6 +31,9 @@ public class CountryEntity {
 	private String name;
 	
 	@ManyToMany
+	@JoinTable(name = "countries_currencies",
+			joinColumns = @JoinColumn(name = "country_id"),
+			inverseJoinColumns = @JoinColumn(name = "currency_id"))
 	private Set<CurrencyEntity> currencies;
 
 	public CountryEntity(String name) {
