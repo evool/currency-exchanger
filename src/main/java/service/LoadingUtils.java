@@ -25,5 +25,4 @@ public class LoadingUtils {
 		}
 		return date;
 	}
-
 }

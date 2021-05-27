@@ -3,19 +3,50 @@ package cache;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-import model.Currency;
+import entity.CurrencyEntity;
 import model.CurrencyCode;
-import service.LoadingUtils;
+import repository.CurrencyRepository;
 
-public class CurrencyCache extends Cache<Currency> {
+public class CurrencyCache extends Cache<CurrencyEntity> implements CurrencyRepository {
+
+	@Override
+	public CurrencyEntity getCurrencyById(Long id) {
+		Iterator<CurrencyEntity> i = cache.iterator();
+		CurrencyEntity temp;
+		while(i.hasNext()) {
+			temp = i.next();
+			if(temp.getId().equals(id)) {
+				return temp;
+			}
+		}
+		return null;
+	}
 	
-	public Currency find(CurrencyCode code, LocalDate date) {
-		date = LoadingUtils.verifyAndCorrectDate(date);
-		Iterator<Currency> i = cache.iterator();
-		Currency temp;
+	@Override
+	public CurrencyEntity find(CurrencyCode code, LocalDate date) {
+		Iterator<CurrencyEntity> i = cache.iterator();
+		CurrencyEntity temp;
 		while (i.hasNext()) {
 			temp = i.next();
-			if (temp.getCode() == code && temp.getEffectiveDate().equals(date)) {
+			if (temp.getCode() == code) {
+				return temp;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void saveCurrency(CurrencyEntity currency) {
+		super.save(currency);
+	}
+
+	@Override
+	public CurrencyEntity getCurrencyByCode(CurrencyCode code) {
+		Iterator<CurrencyEntity> i = cache.iterator();
+		CurrencyEntity temp;
+		while (i.hasNext()) {
+			temp = i.next();
+			if (temp.getCode() == code) {
 				return temp;
 			}
 		}

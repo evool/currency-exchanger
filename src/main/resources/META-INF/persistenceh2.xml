@@ -9,18 +9,19 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="hibernate.connection.driver_class"
-				value="org.postgresql.Driver" />
+				value="org.h2.Driver" />
 			<property name="hibernate.connection.url"
-				value="jdbc:postgresql://localhost/currencydb" />
+				value="jdbc:h2:mem:test" />
 			<property name="hibernate.connection.username"
-				value="hibernate_user" />
+				value="sa" />
 			<property name="hibernate.connection.password"
-				value="asdewq123" />
+				value="" />
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+				value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />
+			<property name="spring.h2.console.enabled" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

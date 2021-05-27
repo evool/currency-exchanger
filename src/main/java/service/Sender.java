@@ -1,24 +1,23 @@
 package service;
 
-import model.Currency;
-import service.parser.Parsing;
-import service.saver.Saving;
+import entity.RateEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import parser.Parsing;
+import saver.Saving;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
 public class Sender implements Sending {
-	private Parsing parser;
+	
 	private Saving saver;
-	
-	public Sender(Saving saver) {
-		this.saver = saver;
-	}
-	
-	public Sender(Saving saver, Parsing parser) {
-		this.saver = saver;
-		this.parser = parser;
-	}
+	private Parsing parser;
 	
 	@Override
-	public void send(Currency data) {
+	public void send(RateEntity data) {
 		if(parser == null) {
 			saver.save(data);
 		} else {

@@ -1,15 +1,14 @@
 package service;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
-import model.Currency;
+import entity.RateEntity;
 import model.CurrencyCode;
-import service.parser.Parsing;
-import service.provider.Providing;
+import parser.Parsing;
+import provider.Providing;
 
 public interface Loading {
-	Optional<Currency> load(CurrencyCode code, LocalDate date);
+	RateEntity load(CurrencyCode code, LocalDate date);
 	void setProvider(Providing provider);
 	void setParser(Parsing parser);
 }

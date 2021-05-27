@@ -1,18 +1,21 @@
-import java.math.BigDecimal;
-
-import cache.CurrencyCacheUtils;
+import entity.CurrencyEntity;
 import model.CurrencyCode;
-import service.Exchange;
+import repository.CurrencyRepository;
+import repository.CurrencyRepositoryImpl;
+import repository.EntityManagerUtil;
 
 public class Main {
+	
 	public static void main(String[] args) {
-
-//		for(CurrencyCode c : CurrencyCode.values()) {
-//			new Exchange().toPLN(BigDecimal.TEN, c);
-//		}
+		EntityManagerUtil.startEntityManager();
 		
-		SaleDocumentService.insert();
+		CurrencyRepository cr = new CurrencyRepositoryImpl();
+		CurrencyEntity currency = new CurrencyEntity();
+		currency.setCode(CurrencyCode.CZK);
+		currency.setName("Korona");
 		
-//		CurrencyCacheUtils.get().printAll();
+		cr.saveCurrency(currency);
+		
+		EntityManagerUtil.closeEntityManager();
 	}
 }
